@@ -92,13 +92,14 @@
         android:onClick="write"
         android:text="WRITE"
         android:textColor="#ffFFff"
-        android:textSize="25sp" />
+        android:textSize="15sp" />
+
 
     <Button
         android:id="@+id/Bread"
-        android:layout_width="126dp"
-        android:layout_height="62dp"
-        android:layout_marginLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="61dp"
+        android:layout_marginLeft="11dp"
         android:layout_marginTop="597dp"
         android:layout_toRightOf="@id/Bwrite"
 
@@ -106,13 +107,13 @@
         android:onClick="read"
         android:text="READ"
         android:textColor="#ffFFff"
-        android:textSize="25sp" />
+        android:textSize="15sp" />
 
     <Button
         android:id="@+id/Bupdate"
-        android:layout_width="126dp"
-        android:layout_height="62dp"
-        android:layout_marginLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="61dp"
+        android:layout_marginLeft="17dp"
         android:layout_marginTop="597dp"
         android:layout_toRightOf="@id/Bread"
 
@@ -120,13 +121,12 @@
         android:onClick="update"
         android:text="UPDATE"
         android:textColor="#ffFFff"
-        android:textSize="25sp" />
-
+        android:textSize="15sp" />
 
     <Button
         android:id="@+id/Bremove"
-        android:layout_width="126dp"
-        android:layout_height="62dp"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="597dp"
         android:layout_toRightOf="@id/Bupdate"
@@ -135,7 +135,7 @@
         android:onClick="read"
         android:text="READ"
         android:textColor="#ffFFff"
-        android:textSize="25sp" />
+        android:textSize="15sp" />
 
 
 </RelativeLayout>
