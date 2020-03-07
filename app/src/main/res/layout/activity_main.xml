@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
 
-        android:layout_marginTop="79dp"
+        android:layout_marginTop="32dp"
 
         android:text="NAME:"
         android:textColor="@android:color/black"
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="162dp"
+        android:layout_marginTop="98dp"
         android:text="EMAIL:"
         android:textColor="@android:color/black"
         android:textSize="25sp" />
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="241dp"
+        android:layout_marginTop="175dp"
         android:text="MOBILE NUMBER:"
         android:textColor="@android:color/black"
         android:textSize="25sp" />
@@ -44,8 +44,8 @@
         android:layout_height="65dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="79dp"
-        android:layout_marginTop="61dp" />
+        android:layout_marginLeft="77dp"
+        android:layout_marginTop="15dp" />
 
     <EditText
         android:id="@+id/etemail"
@@ -53,32 +53,28 @@
         android:layout_height="55dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="83dp"
-        android:layout_marginTop="148dp" />
+        android:layout_marginLeft="81dp"
+        android:layout_marginTop="87dp" />
+
 
     <EditText
         android:id="@+id/etnumber"
         android:layout_width="323dp"
         android:layout_height="69dp"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="221dp"
+        android:layout_marginStart="-2dp"
+        android:layout_marginLeft="-2dp"
+        android:layout_marginTop="153dp"
         android:layout_toEndOf="@+id/txtnumber"
         android:layout_toRightOf="@+id/txtnumber" />
-
 
     <TextView
         android:id="@+id/txtshow"
         android:layout_width="match_parent"
-        android:layout_height="263dp"
-        android:layout_alignTop="@+id/etnumber"
-        android:layout_marginTop="92dp"
-        android:gravity="center_horizontal"
-        android:text="\n\n-----------------\n---no records---\n------------------"
-        android:textAlignment="center"
-        android:textColor="#F44336"
-        android:textSize="25sp" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:hint="records"></TextView>
+
 
     <Button
         android:id="@+id/Bwrite"
@@ -87,20 +83,19 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
-        android:layout_marginTop="597dp"
+        android:layout_marginTop="500dp"
         android:background="@android:color/holo_red_dark"
         android:onClick="write"
         android:text="WRITE"
         android:textColor="#ffFFff"
         android:textSize="15sp" />
 
-
     <Button
         android:id="@+id/Bread"
         android:layout_width="wrap_content"
         android:layout_height="61dp"
-        android:layout_marginLeft="11dp"
-        android:layout_marginTop="597dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="500dp"
         android:layout_toRightOf="@id/Bwrite"
 
         android:background="@android:color/holo_red_dark"
@@ -113,8 +108,8 @@
         android:id="@+id/Bupdate"
         android:layout_width="wrap_content"
         android:layout_height="61dp"
-        android:layout_marginLeft="17dp"
-        android:layout_marginTop="597dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="500dp"
         android:layout_toRightOf="@id/Bread"
 
         android:background="@android:color/holo_red_dark"
@@ -128,12 +123,12 @@
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="597dp"
+        android:layout_marginTop="500dp"
         android:layout_toRightOf="@id/Bupdate"
 
         android:background="@android:color/holo_red_dark"
-        android:onClick="read"
-        android:text="READ"
+        android:onClick="remove"
+        android:text="REMORE"
         android:textColor="#ffFFff"
         android:textSize="15sp" />
 

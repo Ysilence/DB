@@ -12,112 +12,102 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
-    private TextView tshow;
-    private EditText tname;
-    private EditText temail;
-    private EditText tnumber;
-    private Button btwrite;
-    private Button btread;
-    private Button btupdate;
-    private Button btremove;
-    MyHelper myHelper;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    private EditText etname;
+    private EditText etnumber;
+    private EditText etemail;
+
+    private Button write;
+    private Button read;
+    private Button update;
+    private Button remove;
+
+    private TextView show;
+
+    MyHelper myHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        etname=(EditText)findViewById(R.id.etname);
+        etnumber=(EditText)findViewById(R.id.etnumber);
+        etemail=(EditText)findViewById(R.id.etemail);
 
-        tshow=(TextView)findViewById(R.id.txtshow);
+        write=(Button)findViewById(R.id.Bwrite);
+        read=(Button)findViewById(R.id.Bread);
+        update=(Button)findViewById(R.id.Bupdate);
+        remove=(Button)findViewById(R.id.Bremove);
 
-        tname=(EditText)findViewById(R.id.etname);
-        temail=(EditText)findViewById(R.id.etemail);
-        tnumber=(EditText)findViewById(R.id.etnumber);
+        write.setOnClickListener(this);
+        read.setOnClickListener(this);
+        update.setOnClickListener(this);
+        remove.setOnClickListener(this);
 
-        btwrite=(Button)findViewById(R.id.Bwrite);
-        btread=(Button)findViewById(R.id.Bread);
-        btupdate=(Button)findViewById(R.id.Bupdate);
-        btremove=(Button)findViewById(R.id.Bremove);
+        show=(TextView)findViewById(R.id.txtshow);
 
         myHelper=new MyHelper(this);
-
-        btwrite.setOnClickListener((View.OnClickListener) this);
-        btread.setOnClickListener((View.OnClickListener) this);
-        btupdate.setOnClickListener((View.OnClickListener) this);
-        btremove.setOnClickListener((View.OnClickListener) this);
-
-
-
     }
 
-    public void onClick(View view)
-    {
+    @Override
+    public void onClick(View v) {
         String name;
+        String phone;
         String email;
-        String number;
         SQLiteDatabase db;
         ContentValues values;
-
-
-
-        switch(view.getId())
-        {
+        switch (v.getId()){
             case R.id.Bwrite:
-                name=tname.getText().toString();
-                email=temail.getText().toString();
-                number=tnumber.getText().toString();
-                db=myHelper.getWritableDatabase();
+                name=etname.getText().toString();
+                phone=etnumber.getText().toString();
+                email=etemail.getText().toString();
+                db=myHelper.getReadableDatabase();
                 values=new ContentValues();
-                if(name.isEmpty()||number.isEmpty()||email.isEmpty()){
+                if(name.isEmpty()||phone.isEmpty()||email.isEmpty()){
                     Toast.makeText(this,"Input is empty",Toast.LENGTH_SHORT).show();
                 }
                 else{
                     values.put("name",name);
-                    values.put("phone",number);
+                    values.put("number",phone);
                     values.put("email",email);
                     db.insert("info",null,values);
                     Toast.makeText(this,"write success",Toast.LENGTH_SHORT).show();
                 }
                 db.close();
                 break;
-            case R.id.Bremove:
-                db=myHelper.getWritableDatabase();
-                db.delete("info",null,null);
-                Toast.makeText(this,"delete success",Toast.LENGTH_SHORT);
-                db.close();
-                tshow.setText("");
-                break;
-            case R.id.Bupdate:
-                db=myHelper.getWritableDatabase();
-                values=new ContentValues();
-                values.put("number",tnumber.getText().toString());
-                db.update("info",values,"name=?",new String[]{tname.getText().toString()});
-              //  db.update("info",values,"email=?",new String[]{temail.getText().toString()});
-                Toast.makeText(this,"update success",Toast.LENGTH_SHORT);
-                db.close();
-                break;
             case R.id.Bread:
                 db=myHelper.getWritableDatabase();
                 Cursor cursor=db.query("info",null,null,null,null,null,null,null);
-                if(cursor.getCount()==0)
-                {
-                    Toast.makeText(this,"There is no data",Toast.LENGTH_SHORT);
+                if(cursor.getCount()==0){
+                    Toast.makeText(this,"no data",Toast.LENGTH_SHORT).show();
                 }
-                else {
+                else{
                     cursor.moveToFirst();
-                    tshow.setText("name："+cursor.getString(1)+"email:"+cursor.getString(2)+"phone number:"+cursor.getString(3));
+                    show.setText("name:"+cursor.getString(1)+"email:"+cursor.getString(2)+"number:"+cursor.getString(3));
                 }
-                while(cursor.moveToNext())
-                {
-                    tshow.append("\n"+"name："+cursor.getString(1)+"email:"+cursor.getString(2)+"phone number:"+cursor.getString(3));
+                while (cursor.moveToNext()){
+                    show.append("\n"+"name:"+cursor.getString(1)+"email:"+cursor.getString(2)+"number:"+cursor.getString(3));
                 }
                 cursor.close();
                 db.close();
                 break;
-
+            case R.id.Bupdate:
+                db=myHelper.getWritableDatabase();
+                values=new ContentValues();
+                values.put("number",etnumber.getText().toString());
+                db.update("info",values,"name=?",new String[]{etname.getText().toString()});
+                Toast.makeText(this,"update success",Toast.LENGTH_SHORT).show();
+                db.close();
+                break;
+            case R.id.Bremove:
+                db=myHelper.getWritableDatabase();
+                db.delete("info",null,null);
+                Toast.makeText(this,"remove success",Toast.LENGTH_SHORT).show();
+                db.close();
+                show.setText("no records");
+                break;
         }
     }
-
-
-
 }
